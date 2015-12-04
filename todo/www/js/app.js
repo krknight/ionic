@@ -59,7 +59,9 @@ the last active project index.
   ----------
    <div ng-controller="MyController">
    Your name:
+   |||||||||||||||||||||||||||||||||||||||
    <input type="text" ng-model="username">
+   |||||||||||||||||||||||||||||||||||||||
    <button ng-click='sayHello()'>greet</button>
    <hr>
    {{greeting}}
@@ -69,7 +71,9 @@ the last active project index.
    ---------
    angular.module('scopeExample', [])
    .controller('MyController', ['$scope', function($scope) {
+   ||||||||||||||||||||||||||
    $scope.username = 'World';
+   |||||||||||||||||||||||||||
 
    $scope.sayHello = function() {
    $scope.greeting = 'Hello ' + $scope.username + '!';
@@ -97,7 +101,7 @@ the last active project index.
     $scope.selectProject(newProject, $scope.projects.length-1);
   }
 
-  // Load or initialize projects
+  // Load or initialize projects, there should by an ng-model='"projects" in index.html
   $scope.projects = Projects.all();
 
   // Grab the last active, or the first project
@@ -146,11 +150,14 @@ the last active project index.
     $scope.taskModal.show();
   };
 
+  // controller function closeNewTask()
   // <button class="button button-clear button-positive" ng-click="closeNewTask()">Cancel</button>
   $scope.closeNewTask = function() {
     $scope.taskModal.hide();
   };
 
+  // controller function toggleProjects()
+  // <button class="button button-icon" ng-click="toggleProjects()">
   $scope.toggleProjects = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };

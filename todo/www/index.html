@@ -21,19 +21,38 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+
   </head>
+
+  <!--
+  controller function summary
+  ---------------------------
+  Burger/Nav              - toggleProjects() (open and close left side menu. Reveals Projects +)
+  Compose open task modal - newTask() (create a new task for the current project)
+  Form select task modal  - createTask(task) (closes modal after task created)
+  Close new task modal    - closeNewTask() (Cancel clicked)
+  Project +               - newProject() (Open an alert box with a Project name text input field)
+  Project list selection  - selectProject(project,$index) (highlight this project and show its tasks)
+
+  -->
 
   <body ng-app="starter" ng-controller="TodoCtrl">
 
+    <!-- -->
+    <!-- -->
+    <!-- -->
     <ion-side-menus>
-
-      <!-- Center content -->
+      <!-- -->
+      <!-- -->
       <ion-side-menu-content>
 
+       <!-- Top bar - from right - Burger, project name, new task -->
        <ion-header-bar class="bar-dark">
+        <!-- Burger navigation button -->
         <button class="button button-icon" ng-click="toggleProjects()">
           <i class="icon ion-navicon"></i>
         </button>
+        <!-- Project title -->
         <h1 class="title">{{activeProject.title}}</h1>
         <!-- New Task button -->
         <button class="button button-icon" ng-click="newTask()">
@@ -41,8 +60,8 @@
         </button>
        </ion-header-bar>
 
+       <!-- Tasks listed under the selected project -->
        <ion-content scroll="false">
-         <!-- our list and list items -->
          <ion-list>
            <!-- tasks is defined in TodoCtrl, it could have been defined using ng-init="tasks=[{title:'Collect Coins'},{...}]" -->
            <!-- task represents one key value pair -->
@@ -53,54 +72,67 @@
        </ion-content>
 
       </ion-side-menu-content>
+      <!-- -->
+      <!-- -->
 
-      <!-- Left menu -->
+      <!-- -->
+      <!-- -->
       <ion-side-menu side="left">
+       <!-- Projects + -->
        <ion-header-bar class="bar-dark">
+        <!-- Projects -->
         <h1 class="title">Projects</h1>
+         <!-- + -->
          <button class="button button-icon ion-plus" ng-click="newProject()"></button>
        </ion-header-bar>
+
+       <!-- List all projects -->
        <ion-content scroll="false">
          <ion-list>
            <ion-item ng-repeat="project in projects" ng-click="selectProject(project,$index)"
                      ng-class="{active:activeProject == project}">{{project.title}}</ion-item>
          </ion-list>
        </ion-content>
+
       </ion-side-menu>
-
-
-
-      <script id="new-task.html" type="text/ng-template">
-
-        <div class="modal">
-
-          <!-- Modal header bar -->
-          <ion-header-bar class="bar-secondary">
-            <h1 class="title">New Task</h1>
-            <button class="button button-clear button-positive" ng-click="closeNewTask()">Cancel</button>
-          </ion-header-bar>
-
-          <!-- Modal content area -->
-          <ion-content>
-            <form ng-submit="createTask(task)">
-              <div class="list">
-                <label class="item item-input">
-                  <!-- ng-model directive binds the input field to the controller property task.title -->
-                  <input type="text" placeholder="What do you need to do?" ng-model="task.title">
-                </label>
-              </div>
-              <div class="padding">
-                <button type="submit" class="button button-block button-positive">Create Task</button>
-              </div>
-            </form>
-          </ion-content>
-
-        </div>
-
-      </script>
-
-
+      <!-- -->
+      <!-- -->
 
     </ion-side-menus>
+    <!-- -->
+    <!-- -->
+    <!-- -->
+
   </body>
+
+  <!-- Add task modal invoked by right hand compose icon -->
+  <script id="new-task.html" type="text/ng-template">
+
+    <div class="modal">
+
+      <!-- New Task    Cancel -->
+      <ion-header-bar class="bar-secondary">
+        <h1 class="title">New Task</h1>
+        <button class="button button-clear button-positive" ng-click="closeNewTask()">Cancel</button>
+      </ion-header-bar>
+
+      <!-- Modal content area -->
+      <ion-content>
+        <form ng-submit="createTask(task)">
+          <div class="list">
+            <label class="item item-input">
+              <!-- ng-model directive binds the input field to the controller property task.title -->
+              <input type="text" placeholder="What do you need to do?" ng-model="task.title">
+            </label>
+          </div>
+          <div class="padding">
+            <button type="submit" class="button button-block button-positive">Create Task</button>
+          </div>
+        </form>
+      </ion-content>
+
+    </div>
+
+  </script>
+
 </html>

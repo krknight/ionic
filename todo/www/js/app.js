@@ -80,11 +80,12 @@ the last active project index.
    };
    }]);
    */
+// ionicModal and ionicSideMenuDelegate are ionic services that you add to your controller
 // $ionicModal is a service that instantiates the ionicModal controller
 // The Modal is a content pane that can go over the user's main view temporarily.
 // A modal will broadcast 'modal.shown', 'modal.hidden' and 'modal removed' from its originating scope
 
-.controller('TodoCtrl', function($scope,$timeout, $ionicModal, Projects, $ionicSideMenuDelegate) {
+.controller('TodoCtrl', function($scope, $timeout, $ionicModal, Projects, $ionicSideMenuDelegate) {
 
   // Testing data
   $scope.tasks = [
